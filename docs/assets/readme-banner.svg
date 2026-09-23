@@ -1,0 +1,70 @@
+<svg width="1200" height="300" viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gladia MCP - speech-to-text for AI assistants">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#000000"/>
+      <stop offset="0.55" stop-color="#0C0C0C"/>
+      <stop offset="1" stop-color="#121018"/>
+    </linearGradient>
+    <radialGradient id="glowPurple" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#947AFC" stop-opacity="0.28"/>
+      <stop offset="0.55" stop-color="#947AFC" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#947AFC" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="300" fill="url(#bg)"/>
+  <rect width="1200" height="300" fill="url(#grid)"/>
+
+  <ellipse cx="780" cy="150" rx="280" ry="160" fill="url(#glowPurple)"/>
+
+  <g fill="#EDE9FE">
+    <circle cx="470" cy="42" r="1.4" opacity="0.35"/>
+    <circle cx="540" cy="262" r="1.1" opacity="0.25"/>
+    <circle cx="960" cy="28" r="1.3" opacity="0.3"/>
+    <circle cx="660" cy="22" r="1.0" opacity="0.25"/>
+    <circle cx="905" cy="270" r="1.5" opacity="0.3"/>
+    <circle cx="415" cy="150" r="1.2" opacity="0.2"/>
+    <circle cx="1120" cy="150" r="1.0" opacity="0.25"/>
+    <circle cx="585" cy="118" r="0.9" opacity="0.2"/>
+  </g>
+
+  <g transform="translate(72, 96)" fill="#FFFFFF">
+    <g transform="scale(0.9024)">
+      <path d="M42.8783 53.1389C48.1056 53.139 53.1197 55.2166 56.8177 58.9143L71.1429 75.5637H62.7972C60.6349 75.5636 58.5758 74.6324 57.1468 73.0061L45.2816 59.4934V82.0002H37.3314V59.9797L25.8949 73.0032C24.4689 74.6263 22.41 75.5598 20.2445 75.5598H11.8929L26.2279 58.9104C29.9259 55.2129 34.9401 53.135 40.1673 53.135H42.8783V53.1389ZM23.6126 25.7092C27.3105 29.407 29.388 34.4208 29.388 39.6477V42.3586C29.388 47.5855 27.3105 52.5994 23.6126 56.2971L6.96127 70.6213V62.2766L6.95834 62.2737C6.95834 60.1115 7.89247 58.0523 9.51889 56.6233L23.0326 44.759H0.52475V36.8088H22.5472L9.52182 25.3733C7.89561 23.9475 6.96136 21.889 6.96127 19.7239V11.3723L23.6126 25.7092ZM76.0843 19.717C76.0843 21.8793 75.1532 23.9385 73.5267 25.3674L60.013 37.2317H82.5247V45.1819H60.5023L73.5267 56.6165C75.1501 58.0423 76.0843 60.1015 76.0843 62.2668V70.6184L59.4339 56.2844C55.7359 52.5866 53.6576 47.573 53.6576 42.3459V39.635C53.6576 34.408 55.7359 29.3943 59.4339 25.6965L76.0843 11.3723V19.717ZM45.7083 22.0139L57.1439 8.99048C58.5698 7.36731 60.6288 6.43385 62.7943 6.43384H71.1458L56.8119 23.0833C53.1138 26.781 48.0989 28.8586 42.8714 28.8586H40.1605L40.1576 28.8616C34.9303 28.8615 29.9161 26.7839 26.2181 23.0862L11.8929 6.43677H20.2386C22.401 6.43682 24.46 7.37096 25.889 8.99731L37.7572 22.5061V0.000244141H45.7083V22.0139Z"/>
+    </g>
+  </g>
+
+  <text x="172" y="140" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="56" font-weight="800" fill="#FFFFFF" letter-spacing="-1.2">Gladia MCP</text>
+  <text x="174" y="182" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="400" fill="#A3A3A3">Speech-to-text tools for AI assistants.</text>
+
+  <g>
+    <rect x="620" y="48" width="500" height="204" rx="14" fill="#0C0C0C" fill-opacity="0.96" stroke="#252525" stroke-width="1.5"/>
+    <line x1="620" y1="82" x2="1120" y2="82" stroke="#252525" stroke-width="1"/>
+    <circle cx="644" cy="65" r="5" fill="#EF4444"/>
+    <circle cx="662" cy="65" r="5" fill="#F2CB45"/>
+    <circle cx="680" cy="65" r="5" fill="#22C55E"/>
+    <text x="706" y="70" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#727272">MCP - gladia</text>
+
+    <text x="644" y="112" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" fill="#A3A3A3">Transcribe this interview with diarization</text>
+
+    <rect x="644" y="128" width="452" height="86" rx="10" fill="#121018" stroke="#252525" stroke-width="1"/>
+    <text x="660" y="152" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#947AFC">transcribe_pre_recorded</text>
+    <text x="660" y="174" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12" fill="#727272">audio_url / diarization / summarization</text>
+    <g filter="url(#glow)">
+      <rect x="660" y="188" width="10" height="10" rx="2" fill="#947AFC">
+        <animate attributeName="opacity" values="1;0.25;1" dur="1.6s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+    <text x="678" y="197" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="11" fill="#1A9EFF">job queued - id returned</text>
+  </g>
+</svg>

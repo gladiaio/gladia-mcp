@@ -1,0 +1,75 @@
+{
+  "name": "@gladiaio/mcp",
+  "version": "0.0.0",
+  "description": "MCP server for Gladia pre-recorded transcription and live job management",
+  "keywords": [
+    "gladia",
+    "mcp",
+    "speech-to-text",
+    "transcription"
+  ],
+  "homepage": "https://github.com/gladiaio/mcp#readme",
+  "bugs": {
+    "url": "https://github.com/gladiaio/mcp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gladiaio/mcp.git"
+  },
+  "type": "module",
+  "license": "MIT",
+  "private": false,
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "bin": {
+    "gladia-mcp": "./dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
+    }
+  },
+  "files": [
+    "dist",
+    "docs/assets",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run build && npm run test:stdio && npm run package:check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "oxlint --deny-warnings .",
+    "package:check": "publint && npm pack --dry-run",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:stdio": "vitest run --config vitest.stdio.config.ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run check"
+  },
+  "dependencies": {
+    "@gladiaio/sdk": "^2.1.0",
+    "@modelcontextprotocol/server": "^2.0.0",
+    "zod": "^4.6.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "@modelcontextprotocol/client": "^2.0.0",
+    "@types/node": "^22.20.2",
+    "@vitest/coverage-v8": "^5.0.0",
+    "oxlint": "^1.82.0",
+    "prettier": "^3.9.6",
+    "publint": "^0.3.24",
+    "tsdown": "^0.23.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.0"
+  }
+}

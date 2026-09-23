@@ -1,0 +1,37 @@
+name: Verify package
+description: Install dependencies and run the handoff quality gate
+
+runs:
+  using: composite
+  steps:
+    - name: Install dependencies
+      run: npm ci
+      shell: bash
+
+    - name: Format check
+      run: npm run format:check
+      shell: bash
+
+    - name: Lint
+      run: npm run lint
+      shell: bash
+
+    - name: Typecheck
+      run: npm run typecheck
+      shell: bash
+
+    - name: Test with coverage
+      run: npm run test:coverage
+      shell: bash
+
+    - name: Build
+      run: npm run build
+      shell: bash
+
+    - name: Stdio smoke test
+      run: npm run test:stdio
+      shell: bash
+
+    - name: Package check
+      run: npm run package:check
+      shell: bash
