@@ -239,17 +239,17 @@ Do not publish from a laptop.
 
 ## Docs & links
 
-| Resource | Link |
-| -------- | ---- |
-| Gladia product | [gladia.io](https://www.gladia.io) |
-| API documentation | [docs.gladia.io](https://docs.gladia.io) |
-| Pre-recorded quickstart | [docs.gladia.io/chapters/pre-recorded-stt/quickstart](https://docs.gladia.io/chapters/pre-recorded-stt/quickstart) |
-| Get an API key | [app.gladia.io](https://app.gladia.io) |
-| npm package | [@gladiaio/mcp](https://www.npmjs.com/package/@gladiaio/mcp) |
-| JavaScript SDK | [@gladiaio/sdk](https://www.npmjs.com/package/@gladiaio/sdk) |
-| Terminal CLI | [gladiaio/gladia-cli](https://github.com/gladiaio/gladia-cli) |
-| Model Context Protocol | [modelcontextprotocol.io](https://modelcontextprotocol.io) |
-| Issues & feature requests | [github.com/gladiaio/mcp/issues](https://github.com/gladiaio/mcp/issues) |
+| Resource                  | Link                                                                                                               |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Gladia product            | [gladia.io](https://www.gladia.io)                                                                                 |
+| API documentation         | [docs.gladia.io](https://docs.gladia.io)                                                                           |
+| Pre-recorded quickstart   | [docs.gladia.io/chapters/pre-recorded-stt/quickstart](https://docs.gladia.io/chapters/pre-recorded-stt/quickstart) |
+| Get an API key            | [app.gladia.io](https://app.gladia.io)                                                                             |
+| npm package               | [@gladiaio/mcp](https://www.npmjs.com/package/@gladiaio/mcp)                                                       |
+| JavaScript SDK            | [@gladiaio/sdk](https://www.npmjs.com/package/@gladiaio/sdk)                                                       |
+| Terminal CLI              | [gladiaio/gladia-cli](https://github.com/gladiaio/gladia-cli)                                                      |
+| Model Context Protocol    | [modelcontextprotocol.io](https://modelcontextprotocol.io)                                                         |
+| Issues & feature requests | [github.com/gladiaio/mcp/issues](https://github.com/gladiaio/mcp/issues)                                           |
 
 ## License
 
