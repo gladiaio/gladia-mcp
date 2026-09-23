@@ -3,7 +3,6 @@
 ![Gladia MCP banner](docs/assets/readme-banner.svg)
 
 <p align="center">
-  <a href="https://github.com/gladiaio/mcp/actions/workflows/ci.yml"><img src="https://github.com/gladiaio/mcp/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://www.npmjs.com/package/@gladiaio/mcp"><img src="https://img.shields.io/npm/v/@gladiaio/mcp.svg" alt="npm"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D22.18-339933.svg" alt="Node"></a>
