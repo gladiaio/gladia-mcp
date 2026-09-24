@@ -194,8 +194,8 @@ This release is intentionally small and stateless: pre-recorded create/get/list/
 ## Development
 
 ```sh
-git clone https://github.com/gladiaio/mcp.git
-cd mcp
+git clone https://github.com/gladiaio/gladia-mcp.git
+cd gladia-mcp
 npm ci
 npm test
 ```
@@ -248,7 +248,7 @@ Do not publish from a laptop.
 | JavaScript SDK            | [@gladiaio/sdk](https://www.npmjs.com/package/@gladiaio/sdk)                                                       |
 | Terminal CLI              | [gladiaio/gladia-cli](https://github.com/gladiaio/gladia-cli)                                                      |
 | Model Context Protocol    | [modelcontextprotocol.io](https://modelcontextprotocol.io)                                                         |
-| Issues & feature requests | [github.com/gladiaio/mcp/issues](https://github.com/gladiaio/mcp/issues)                                           |
+| Issues & feature requests | [github.com/gladiaio/gladia-mcp/issues](https://github.com/gladiaio/gladia-mcp/issues)                             |
 
 ## License
 

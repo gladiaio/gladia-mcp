@@ -8,13 +8,13 @@
     "speech-to-text",
     "transcription"
   ],
-  "homepage": "https://github.com/gladiaio/mcp#readme",
+  "homepage": "https://github.com/gladiaio/gladia-mcp#readme",
   "bugs": {
-    "url": "https://github.com/gladiaio/mcp/issues"
+    "url": "https://github.com/gladiaio/gladia-mcp/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gladiaio/mcp.git"
+    "url": "git+https://github.com/gladiaio/gladia-mcp.git"
   },
   "type": "module",
   "license": "MIT",
