@@ -1,6 +1,6 @@
 {
   "name": "@gladiaio/mcp",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "MCP server for Gladia pre-recorded transcription and live job management",
   "keywords": [
     "gladia",
