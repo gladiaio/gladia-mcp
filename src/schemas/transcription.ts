@@ -44,6 +44,12 @@ export const transcriptionInputSchema = z
         (value) => new URL(value).protocol === "https:",
         "audio_url must use HTTPS",
       ),
+    model: z
+      .enum(["solaria-1", "solaria-3"])
+      .optional()
+      .describe(
+        'Transcription model. "solaria-1" (default): 100+ languages and code switching. "solaria-3": highest accuracy on en, fr, de, es, and it audio.',
+      ),
     language_config: languageConfig.optional(),
     diarization: z.boolean().optional(),
     diarization_config: z

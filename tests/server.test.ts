@@ -238,6 +238,46 @@ describe("Gladia MCP server", () => {
     );
   });
 
+  it("advertises and forwards the transcription model", async () => {
+    const { tools } = await client.listTools();
+    const inputSchema = tools.find(
+      (tool) => tool.name === "transcribe_pre_recorded",
+    )?.inputSchema as { properties: Record<string, { enum?: string[] }> };
+    expect(inputSchema.properties.model?.enum).toEqual([
+      "solaria-1",
+      "solaria-3",
+    ]);
+
+    const result = await client.callTool({
+      name: "transcribe_pre_recorded",
+      arguments: {
+        audio_url: "https://example.test/audio.mp3",
+        model: "solaria-1",
+        language_config: { languages: ["ja"] },
+      },
+    });
+
+    expect(result.isError).toBeFalsy();
+    expect(api.create).toHaveBeenCalledWith({
+      audio_url: "https://example.test/audio.mp3",
+      model: "solaria-1",
+      language_config: { languages: ["ja"] },
+    });
+  });
+
+  it("rejects unknown transcription models before the SDK call", async () => {
+    const result = await client.callTool({
+      name: "transcribe_pre_recorded",
+      arguments: {
+        audio_url: "https://example.test/audio.mp3",
+        model: "solaria-2",
+      },
+    });
+
+    expect(result.isError).toBe(true);
+    expect(api.create).not.toHaveBeenCalled();
+  });
+
   it("rejects unsafe URLs and invalid code-switching configuration before the SDK call", async () => {
     const unsafe = await client.callTool({
       name: "transcribe_pre_recorded",
