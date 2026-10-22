@@ -24,6 +24,8 @@ const languageConfig = z
     }
   });
 
+const solaria3Languages = ["en", "fr", "de", "es", "it"];
+
 const customVocabularyEntry = z.union([
   z.string().min(1),
   z
@@ -114,6 +116,37 @@ export const transcriptionInputSchema = z
       .strict()
       .optional(),
   })
-  .strict();
+  .strict()
+  .superRefine((value, context) => {
+    if (value.model !== "solaria-3") {
+      return;
+    }
+    const languages = value.language_config?.languages ?? [];
+    if (languages.length === 0) {
+      context.addIssue({
+        code: "custom",
+        message: `solaria-3 requires language_config.languages with at least one of: ${solaria3Languages.join(", ")}`,
+        path: ["language_config", "languages"],
+      });
+    }
+    const unsupported = languages.filter(
+      (language) => !solaria3Languages.includes(language),
+    );
+    if (unsupported.length > 0) {
+      context.addIssue({
+        code: "custom",
+        message: `solaria-3 does not support ${unsupported.join(", ")}; use ${solaria3Languages.join(", ")}, or solaria-1 for other languages`,
+        path: ["language_config", "languages"],
+      });
+    }
+    if (value.language_config?.code_switching) {
+      context.addIssue({
+        code: "custom",
+        message:
+          "solaria-3 does not support code_switching; use solaria-1 for mixed-language audio",
+        path: ["language_config", "code_switching"],
+      });
+    }
+  });
 
 export type TranscriptionInput = z.infer<typeof transcriptionInputSchema>;

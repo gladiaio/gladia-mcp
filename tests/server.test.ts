@@ -278,6 +278,53 @@ describe("Gladia MCP server", () => {
     expect(api.create).not.toHaveBeenCalled();
   });
 
+  it("accepts Solaria-3 with languages it covers", async () => {
+    const result = await client.callTool({
+      name: "transcribe_pre_recorded",
+      arguments: {
+        audio_url: "https://example.test/audio.mp3",
+        model: "solaria-3",
+        language_config: { languages: ["en", "fr", "de", "es", "it"] },
+      },
+    });
+
+    expect(result.isError).toBeFalsy();
+    expect(api.create).toHaveBeenCalledWith({
+      audio_url: "https://example.test/audio.mp3",
+      model: "solaria-3",
+      language_config: { languages: ["en", "fr", "de", "es", "it"] },
+    });
+  });
+
+  it.each([
+    ["without languages", {}],
+    ["with an empty language list", { language_config: { languages: [] } }],
+    [
+      "with a language it does not cover",
+      { language_config: { languages: ["fr", "ja"] } },
+    ],
+    [
+      "with code switching",
+      { language_config: { languages: ["en", "fr"], code_switching: true } },
+    ],
+  ])(
+    "rejects Solaria-3 %s before the SDK call",
+    async (_case, languageOptions) => {
+      const result = await client.callTool({
+        name: "transcribe_pre_recorded",
+        arguments: {
+          audio_url: "https://example.test/audio.mp3",
+          model: "solaria-3",
+          ...languageOptions,
+        },
+      });
+
+      expect(result.isError).toBe(true);
+      expect(JSON.stringify(result.content)).toContain("solaria-3");
+      expect(api.create).not.toHaveBeenCalled();
+    },
+  );
+
   it("rejects unsafe URLs and invalid code-switching configuration before the SDK call", async () => {
     const unsafe = await client.callTool({
       name: "transcribe_pre_recorded",
