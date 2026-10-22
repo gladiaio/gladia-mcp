@@ -138,7 +138,7 @@ Set `model` to choose the transcription [model](https://docs.gladia.io/chapters/
 | `solaria-1` (default) | 100+                         | Yes            | Global coverage, mixed-language audio         |
 | `solaria-3`           | `en`, `fr`, `de`, `es`, `it` | No             | Highest accuracy on real-world European audio |
 
-With `solaria-3`, `language_config.languages` is required and may only contain covered languages, and `code_switching` must be off. The server rejects other combinations before creating a billable job.
+With `solaria-3`, `language_config.languages` is required and may only contain one covered language, and `code_switching` must be off. The server rejects other combinations before creating a billable job.
 
 ```json
 {
