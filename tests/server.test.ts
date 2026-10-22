@@ -528,6 +528,17 @@ describe("Gladia MCP server", () => {
       "text" in matrix.contents[0]! ? matrix.contents[0].text : "",
     ).toContain("live session create/streaming");
     expect(
+      "text" in matrix.contents[0]! ? JSON.parse(matrix.contents[0].text) : {},
+    ).toMatchObject({
+      models: {
+        "solaria-1": expect.objectContaining({ default: true }),
+        "solaria-3": expect.objectContaining({
+          languages: ["en", "fr", "de", "es", "it"],
+          code_switching: false,
+        }),
+      },
+    });
+    expect(
       "text" in limits.contents[0]! ? JSON.parse(limits.contents[0].text) : {},
     ).toMatchObject({
       scope: "pre-recorded transcription",

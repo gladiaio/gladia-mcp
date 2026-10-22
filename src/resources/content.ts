@@ -18,6 +18,22 @@ export const featureMatrix = {
     upload_audio:
       "Upload a local audio or video file from an allowed root (Desktop by default).",
   },
+  models: {
+    "solaria-1": {
+      default: true,
+      languages: "100+",
+      code_switching: true,
+      best_for: "Global language coverage, code switching, clean speech.",
+    },
+    "solaria-3": {
+      default: false,
+      languages: ["en", "fr", "de", "es", "it"],
+      code_switching: false,
+      best_for: "Highest accuracy on real-world European audio.",
+      requires:
+        "language_config.languages with at least one covered language; code_switching must be off.",
+    },
+  },
   supported_intelligence: [
     "language configuration",
     "diarization",
