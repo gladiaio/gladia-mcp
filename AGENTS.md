@@ -41,7 +41,7 @@ Tools, in registration order:
 7. `transcribe_pre_recorded({ audio_url, ...options })`
 8. `upload_audio({ file_path })`
 
-`transcribe_pre_recorded` exposes language configuration, diarization, translation, subtitles, summarization, sentiment analysis, named-entity recognition, PII redaction, and custom vocabulary. Its request shape deliberately follows `PreRecordedV2InitTranscriptionRequest` field names.
+`transcribe_pre_recorded` exposes model selection (`solaria-1`, `solaria-3`), language configuration, diarization, translation, subtitles, summarization, sentiment analysis, named-entity recognition, PII redaction, and custom vocabulary. Its request shape deliberately follows `PreRecordedV2InitTranscriptionRequest` field names.
 
 Live tools manage existing sessions only. They must never start WebSocket streaming or accept audio chunks.
 
@@ -67,7 +67,7 @@ All tools publish Zod input/output schemas and return both `structuredContent` a
 - `src/server.ts` is the public MCP composition root. It registers tools, resources, prompts, annotations, output schemas, and safe operation logs. Dependencies are injected through `createServer` so tests never require a real API.
 - `src/config.ts` owns environment parsing. Supported variables are `GLADIA_API_KEY`, optional `GLADIA_API_URL`, and optional path-delimited `GLADIA_LOCAL_FILE_ROOTS` (Desktop default when unset; empty disables local uploads).
 - `src/gladia/client.ts` is the only production SDK construction point. `PreRecordedClient` and `LiveClient` are the narrow mockable interfaces used by the MCP layer.
-- `src/schemas/transcription.ts` owns the curated public transcription schema and cross-field safety rules such as constrained code switching.
+- `src/schemas/transcription.ts` owns the curated public transcription schema and cross-field safety rules such as constrained code switching and the `solaria-3` language requirements.
 - `src/lib/local-files.ts` owns all local-path authorization and file-size enforcement.
 - `src/lib/errors.ts` owns the user-visible error boundary. Only explicitly marked local-file errors may pass their original messages through.
 - `src/resources/content.ts` contains bundled static resource data. It must remain self-contained in the compiled package.
