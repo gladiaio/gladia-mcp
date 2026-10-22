@@ -33,7 +33,7 @@ export const featureMatrix = {
       code_switching: false,
       best_for: "Highest accuracy on real-world European audio.",
       requires:
-        "language_config.languages with at least one covered language; code_switching must be off.",
+        "language_config.languages with exactly one covered language; code_switching must be off.",
     },
   },
   supported_intelligence: [

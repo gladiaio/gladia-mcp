@@ -253,6 +253,9 @@ describe("Gladia MCP server", () => {
     expect(inputSchema.properties.model?.description).toContain(
       `"solaria-3": highest accuracy on ${solaria3Languages.join(", ")} audio`,
     );
+    expect(inputSchema.properties.model?.description).toContain(
+      "exactly one of them in language_config.languages",
+    );
 
     const result = await client.callTool({
       name: "transcribe_pre_recorded",
@@ -284,38 +287,56 @@ describe("Gladia MCP server", () => {
     expect(api.create).not.toHaveBeenCalled();
   });
 
-  it("accepts Solaria-3 with languages it covers", async () => {
-    const result = await client.callTool({
-      name: "transcribe_pre_recorded",
-      arguments: {
+  it.each(solaria3Languages)(
+    "accepts Solaria-3 with the single covered language %s",
+    async (language) => {
+      const result = await client.callTool({
+        name: "transcribe_pre_recorded",
+        arguments: {
+          audio_url: "https://example.test/audio.mp3",
+          model: "solaria-3",
+          language_config: { languages: [language] },
+        },
+      });
+
+      expect(result.isError).toBeFalsy();
+      expect(api.create).toHaveBeenCalledWith({
         audio_url: "https://example.test/audio.mp3",
         model: "solaria-3",
-        language_config: { languages: ["en", "fr", "de", "es", "it"] },
-      },
-    });
-
-    expect(result.isError).toBeFalsy();
-    expect(api.create).toHaveBeenCalledWith({
-      audio_url: "https://example.test/audio.mp3",
-      model: "solaria-3",
-      language_config: { languages: ["en", "fr", "de", "es", "it"] },
-    });
-  });
+        language_config: { languages: [language] },
+      });
+    },
+  );
 
   it.each([
-    ["without languages", {}],
-    ["with an empty language list", { language_config: { languages: [] } }],
+    [
+      "without languages",
+      {},
+      "solaria-3 requires exactly one language in language_config.languages",
+    ],
+    [
+      "with an empty language list",
+      { language_config: { languages: [] } },
+      "solaria-3 requires exactly one language in language_config.languages",
+    ],
+    [
+      "with several covered languages",
+      { language_config: { languages: ["en", "fr"] } },
+      "solaria-3 accepts exactly one language; got en, fr",
+    ],
     [
       "with a language it does not cover",
-      { language_config: { languages: ["fr", "ja"] } },
+      { language_config: { languages: ["ja"] } },
+      "solaria-3 does not support ja",
     ],
     [
       "with code switching",
-      { language_config: { languages: ["en", "fr"], code_switching: true } },
+      { language_config: { languages: ["en"], code_switching: true } },
+      "solaria-3 does not support code_switching",
     ],
   ])(
     "rejects Solaria-3 %s before the SDK call",
-    async (_case, languageOptions) => {
+    async (_case, languageOptions, expectedMessage) => {
       const result = await client.callTool({
         name: "transcribe_pre_recorded",
         arguments: {
@@ -326,7 +347,7 @@ describe("Gladia MCP server", () => {
       });
 
       expect(result.isError).toBe(true);
-      expect(JSON.stringify(result.content)).toContain("solaria-3");
+      expect(JSON.stringify(result.content)).toContain(expectedMessage);
       expect(api.create).not.toHaveBeenCalled();
     },
   );
@@ -558,6 +579,7 @@ describe("Gladia MCP server", () => {
         "solaria-3": expect.objectContaining({
           languages: ["en", "fr", "de", "es", "it"],
           code_switching: false,
+          requires: expect.stringContaining("exactly one covered language"),
         }),
       },
     });

@@ -50,7 +50,7 @@ export const transcriptionInputSchema = z
       .enum(["solaria-1", "solaria-3"])
       .optional()
       .describe(
-        `Transcription model. "solaria-1" (default): 100+ languages and code switching. "solaria-3": highest accuracy on ${solaria3Languages.join(", ")} audio.`,
+        `Transcription model. "solaria-1" (default): 100+ languages and code switching. "solaria-3": highest accuracy on ${solaria3Languages.join(", ")} audio; requires exactly one of them in language_config.languages and no code switching.`,
       ),
     language_config: languageConfig.optional(),
     diarization: z.boolean().optional(),
@@ -125,7 +125,14 @@ export const transcriptionInputSchema = z
     if (languages.length === 0) {
       context.addIssue({
         code: "custom",
-        message: `solaria-3 requires language_config.languages with at least one of: ${solaria3Languages.join(", ")}`,
+        message: `solaria-3 requires exactly one language in language_config.languages, one of: ${solaria3Languages.join(", ")}`,
+        path: ["language_config", "languages"],
+      });
+    }
+    if (languages.length > 1) {
+      context.addIssue({
+        code: "custom",
+        message: `solaria-3 accepts exactly one language; got ${languages.join(", ")}. Use solaria-1 with code_switching for mixed-language audio`,
         path: ["language_config", "languages"],
       });
     }
