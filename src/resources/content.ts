@@ -1,3 +1,5 @@
+import { solaria3Languages } from "../schemas/transcription.js";
+
 export const featureMatrix = {
   scope: "pre-recorded job creation plus pre-recorded and live get/list/delete",
   tools: {
@@ -27,7 +29,7 @@ export const featureMatrix = {
     },
     "solaria-3": {
       default: false,
-      languages: ["en", "fr", "de", "es", "it"],
+      languages: solaria3Languages,
       code_switching: false,
       best_for: "Highest accuracy on real-world European audio.",
       requires:

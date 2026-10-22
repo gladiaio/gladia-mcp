@@ -24,7 +24,7 @@ const languageConfig = z
     }
   });
 
-const solaria3Languages = ["en", "fr", "de", "es", "it"];
+export const solaria3Languages = ["en", "fr", "de", "es", "it"];
 
 const customVocabularyEntry = z.union([
   z.string().min(1),
@@ -50,7 +50,7 @@ export const transcriptionInputSchema = z
       .enum(["solaria-1", "solaria-3"])
       .optional()
       .describe(
-        'Transcription model. "solaria-1" (default): 100+ languages and code switching. "solaria-3": highest accuracy on en, fr, de, es, and it audio.',
+        `Transcription model. "solaria-1" (default): 100+ languages and code switching. "solaria-3": highest accuracy on ${solaria3Languages.join(", ")} audio.`,
       ),
     language_config: languageConfig.optional(),
     diarization: z.boolean().optional(),

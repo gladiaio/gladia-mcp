@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { createServer, type OperationLog } from "../src/server.js";
 import type { LiveClient, PreRecordedClient } from "../src/gladia/client.js";
+import { solaria3Languages } from "../src/schemas/transcription.js";
 
 const jobId = "45463597-20b7-4af7-b3b3-f5fb778203ab";
 const liveJobId = "55463597-20b7-4af7-b3b3-f5fb778203ab";
@@ -242,11 +243,16 @@ describe("Gladia MCP server", () => {
     const { tools } = await client.listTools();
     const inputSchema = tools.find(
       (tool) => tool.name === "transcribe_pre_recorded",
-    )?.inputSchema as { properties: Record<string, { enum?: string[] }> };
+    )?.inputSchema as {
+      properties: Record<string, { enum?: string[]; description?: string }>;
+    };
     expect(inputSchema.properties.model?.enum).toEqual([
       "solaria-1",
       "solaria-3",
     ]);
+    expect(inputSchema.properties.model?.description).toContain(
+      `"solaria-3": highest accuracy on ${solaria3Languages.join(", ")} audio`,
+    );
 
     const result = await client.callTool({
       name: "transcribe_pre_recorded",
