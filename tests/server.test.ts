@@ -331,6 +331,23 @@ describe("Gladia MCP server", () => {
     },
   );
 
+  it("reports every Solaria-3 language problem when an uncovered language is combined with code switching", async () => {
+    const result = await client.callTool({
+      name: "transcribe_pre_recorded",
+      arguments: {
+        audio_url: "https://example.test/audio.mp3",
+        model: "solaria-3",
+        language_config: { languages: ["ja"], code_switching: true },
+      },
+    });
+
+    const errorText = JSON.stringify(result.content);
+    expect(result.isError).toBe(true);
+    expect(errorText).toContain("solaria-3 does not support ja");
+    expect(errorText).toContain("solaria-3 does not support code_switching");
+    expect(api.create).not.toHaveBeenCalled();
+  });
+
   it("rejects unsafe URLs and invalid code-switching configuration before the SDK call", async () => {
     const unsafe = await client.callTool({
       name: "transcribe_pre_recorded",
