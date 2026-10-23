@@ -1,3 +1,5 @@
+import { solaria3Languages } from "../schemas/transcription.js";
+
 export const featureMatrix = {
   scope: "pre-recorded job creation plus pre-recorded and live get/list/delete",
   tools: {
@@ -17,6 +19,22 @@ export const featureMatrix = {
       "Create an asynchronous pre-recorded transcription.",
     upload_audio:
       "Upload a local audio or video file from an allowed root (Desktop by default).",
+  },
+  models: {
+    "solaria-1": {
+      default: true,
+      languages: "100+",
+      code_switching: true,
+      best_for: "Global language coverage, code switching, clean speech.",
+    },
+    "solaria-3": {
+      default: false,
+      languages: solaria3Languages,
+      code_switching: false,
+      best_for: "Highest accuracy on real-world European audio.",
+      requires:
+        "language_config.languages with exactly one covered language; code_switching must be off.",
+    },
   },
   supported_intelligence: [
     "language configuration",

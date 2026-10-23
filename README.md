@@ -95,6 +95,7 @@ Built-in prompts:
 | Capability                   | Support         |
 | ---------------------------- | --------------- |
 | Pre-recorded transcription   | Yes             |
+| Model selection (Solaria)    | Yes             |
 | Live get / list / delete     | Yes             |
 | Live create / streaming      | No              |
 | Language hints and switching | Yes             |
@@ -124,6 +125,27 @@ Options for `transcribe_pre_recorded` use the same nested field names as Gladiaâ
   "summarization": true,
   "summarization_config": {
     "type": "bullet_points"
+  }
+}
+```
+
+### Models
+
+Set `model` to choose the transcription [model](https://docs.gladia.io/chapters/introduction/models). Omit it to use Gladiaâ€™s default, `solaria-1`.
+
+| Model                 | Languages                    | Code switching | Best for                                      |
+| --------------------- | ---------------------------- | -------------- | --------------------------------------------- |
+| `solaria-1` (default) | 100+                         | Yes            | Global coverage, mixed-language audio         |
+| `solaria-3`           | `en`, `fr`, `de`, `es`, `it` | No             | Highest accuracy on real-world European audio |
+
+With `solaria-3`, `language_config.languages` is required and may only contain one covered language, and `code_switching` must be off. The server rejects other combinations before creating a billable job.
+
+```json
+{
+  "audio_url": "https://example.com/meeting.mp3",
+  "model": "solaria-3",
+  "language_config": {
+    "languages": ["fr"]
   }
 }
 ```
