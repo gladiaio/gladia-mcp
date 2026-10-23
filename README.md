@@ -251,7 +251,7 @@ GLADIA_API_KEY=your-api-key npx @modelcontextprotocol/inspector node dist/index.
 
 Maintainer-only via GitHub Actions **Publish**:
 
-1. Ensure `NPM_TOKEN` can publish `@gladiaio/mcp`.
+1. Publishing uses npm [trusted publishing](https://docs.npmjs.com/trusted-publishers) (GitHub OIDC), so no `NPM_TOKEN` is needed. `@gladiaio/mcp` must list this repo's `publish.yml` as its Trusted Publisher on npmjs.com.
 2. Run **Publish** with a SemVer (e.g. `0.1.1` or `v0.1.1`).
 3. Review and merge the automated `release/vX.Y.Z` PR.
 4. That merge automatically creates tag `vX.Y.Z` and runs `npm publish --access public --provenance`.
