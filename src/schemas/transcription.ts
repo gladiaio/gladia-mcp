@@ -38,6 +38,36 @@ const customVocabularyEntry = z.union([
     .strict(),
 ]);
 
+const maxPromptAudioUrlLength = 2048;
+
+// Prompt arguments end up in model-facing text, so they get stricter checks
+// than the tool input and are rendered in their normalized, percent-encoded form.
+export const promptAudioUrlSchema = z.url().transform((value, context) => {
+  const url = new URL(value);
+  if (url.protocol !== "https:") {
+    context.addIssue({ code: "custom", message: "audio_url must use HTTPS" });
+  }
+  if (url.username || url.password) {
+    context.addIssue({
+      code: "custom",
+      message: "audio_url must not contain credentials",
+    });
+  }
+  if (url.href.includes("#")) {
+    context.addIssue({
+      code: "custom",
+      message: "audio_url must not contain a fragment",
+    });
+  }
+  if (url.href.length > maxPromptAudioUrlLength) {
+    context.addIssue({
+      code: "custom",
+      message: `audio_url must be at most ${maxPromptAudioUrlLength} characters`,
+    });
+  }
+  return url.href;
+});
+
 export const transcriptionInputSchema = z
   .object({
     audio_url: z

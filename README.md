@@ -197,6 +197,8 @@ Safety checks: symlink resolution before root checks, regular files only, max **
 - `transcribe_and_translate`
 - `transcribe_with_diarization`
 
+The transcribe prompts accept HTTPS URLs of at most 2048 characters, without credentials or a `#` fragment. The URL is rendered in its normalized form inside a delimited block that the prompt marks as untrusted data, never inside the instruction text.
+
 All tools publish input/output schemas, structured results, and a JSON text fallback for hosts that do not consume structured content.
 
 ## Configuration
