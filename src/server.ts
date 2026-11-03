@@ -25,6 +25,7 @@ import {
 } from "./schemas/list.js";
 import {
   languageCodeSchema,
+  promptAudioUrlSchema,
   transcriptionInputSchema,
   type TranscriptionInput,
 } from "./schemas/transcription.js";
@@ -543,7 +544,9 @@ export function createServer(options: CreateServerOptions): McpServer {
       description:
         "Create a pre-recorded transcription with translation enabled.",
       argsSchema: z.object({
-        audio_url: z.url().describe("Public HTTPS audio or video URL"),
+        audio_url: promptAudioUrlSchema.describe(
+          "Public HTTPS audio or video URL",
+        ),
         target_language: languageCodeSchema.describe(
           "ISO 639 target language code",
         ),
@@ -569,7 +572,9 @@ export function createServer(options: CreateServerOptions): McpServer {
       description:
         "Create a pre-recorded transcription that identifies speakers.",
       argsSchema: z.object({
-        audio_url: z.url().describe("Public HTTPS audio or video URL"),
+        audio_url: promptAudioUrlSchema.describe(
+          "Public HTTPS audio or video URL",
+        ),
       }),
     },
     ({ audio_url }) => ({
