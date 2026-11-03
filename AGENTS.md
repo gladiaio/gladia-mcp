@@ -27,6 +27,7 @@ Preserve these unless the product requirements explicitly change:
 7. The MCP process must not fetch `audio_url` itself. HTTPS URLs are passed to Gladia through the SDK.
 8. Keep tool, resource, and prompt registration deterministic. Some hosts cache list responses, and tests assert the current order.
 9. Add or change behavior test-first. Capture the red test, implement the smallest coherent change, then refactor.
+10. Never interpolate caller-supplied free text into prompt instructions. Constrain prompt arguments to a narrow schema (UUIDs, language codes); render anything open-ended, such as `audio_url`, only inside a nonce-delimited block marked as untrusted data.
 
 ## Current public surface
 
