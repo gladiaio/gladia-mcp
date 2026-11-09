@@ -12,7 +12,7 @@
 
 Create pre-recorded transcription jobs and manage both pre-recorded and live jobs — with speaker diarization, translation, subtitles, summaries, sentiment analysis, named-entity recognition, PII redaction, and custom vocabulary. Live tools are metadata-only (get / list / delete); this server does not start or stream live audio.
 
-> Creating a transcription is billable to the account behind your `GLADIA_API_KEY`. The server returns a job ID immediately; Gladia finishes the work asynchronously.
+> Creating a transcription is billable to the account behind your `GLADIA_API_KEY` (see [pricing](https://www.gladia.io/pricing)). The server returns a job ID immediately; Gladia finishes the work asynchronously.
 
 <p align="center">
   <strong>Start here:</strong> <a href="#install">Install</a> · <a href="#quick-start">Quick start</a> · <a href="#try-it">Try it</a> · <a href="#features">Features</a> · <a href="#mcp-interface">MCP interface</a> · <a href="#docs--links">Docs &amp; links</a>
@@ -268,6 +268,7 @@ Do not publish from a laptop.
 | API documentation         | [docs.gladia.io](https://docs.gladia.io)                                                                           |
 | Pre-recorded quickstart   | [docs.gladia.io/chapters/pre-recorded-stt/quickstart](https://docs.gladia.io/chapters/pre-recorded-stt/quickstart) |
 | Get an API key            | [app.gladia.io](https://app.gladia.io)                                                                             |
+| Pricing                   | [gladia.io/pricing](https://www.gladia.io/pricing)                                                                 |
 | npm package               | [@gladiaio/mcp](https://www.npmjs.com/package/@gladiaio/mcp)                                                       |
 | JavaScript SDK            | [@gladiaio/sdk](https://www.npmjs.com/package/@gladiaio/sdk)                                                       |
 | Terminal CLI              | [gladiaio/gladia-cli](https://github.com/gladiaio/gladia-cli)                                                      |
